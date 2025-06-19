@@ -2,9 +2,10 @@
 title: "SQL injection UNION attack, determining the number of columns returned by the query"
 date: 2025-06-19
 tags: [sqli, writeup]
-tagline: 
-"**Source**: [Coffee Cube](https://t.me/coffee_cube)  
-**Lab**: [PortSwigger](https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-determining-the-number-of-columns-required/sql-injection/union-attacks/lab-determine-number-of-columns)"
+tagline: ""  
+actions:
+    - label: "Lab PortSwigger"
+      url: "https://unsplash.com](https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-determining-the-number-of-columns-required/sql-injection/union-attacks/lab-determine-number-of-columns"
 header:
   overlay_image: /assets/images/ps_logo.webp
   overlay_filter: 0.5 
