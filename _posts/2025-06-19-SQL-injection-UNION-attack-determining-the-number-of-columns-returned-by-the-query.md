@@ -1,4 +1,8 @@
-# SQL injection UNION attack, determining the number of columns returned by the query
+---
+title: "SQL injection UNION attack, determining the number of columns returned by the query"
+date: 2025-06-19
+tags: [sql, writeup]
+---
 
 ## Links
 
