@@ -1,7 +1,11 @@
 ---
 title: "SQL injection UNION attack, determining the number of columns returned by the query"
 date: 2025-06-19
-tags: [sql, writeup]
+tags: [sqli, writeup]
+excerpt: "This post should [...]"
+header:
+  overlay_image: /assets/images/ps_logo.png
+  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
 ---
 
 **Source:** [Coffee Cube](https://t.me/coffee_cube)  
@@ -53,9 +57,9 @@ SELECT name, price FROM table WHERE category = 'Accessories' and false -- -'
   
   `-- -` - это комментарий в SQL, с помощью него я убрал всю последующую часть запроса. В данном случае это лишняя кавычка, которая ломала бы запрос.
 </details>
+<br>
 
-
-Обрамления я нашел - это одинарные кавычки `'`. Теперь нужно найти количество элементов в запросе. Это можно сделать с помощью `ORDER BY`. Этот оператор используется для сортировки результата по номеру стоблца в БД. Если нужного столбца нет, то мы получим ошибку. Подставлю значение 100.
+Обрамления я нашел - это одинарные кавычки `'`. Теперь нужно найти количество элементов в запросе. Это можно сделать с помощью `ORDER BY`. Этот оператор используется для сортировки результата по номеру стоблца в БД. Если нужного столбца нет, то мы получим ошибку. Подставлю значение 100:
 
 ```
 https://0a1600ed036880cd8c118c7100de00ed.web-security-academy.net/filter?category=Accessories%27%20ORDER%20BY%20100--%20-
@@ -65,7 +69,7 @@ https://0a1600ed036880cd8c118c7100de00ed.web-security-academy.net/filter?categor
 
 ![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-determining-the-number-of-columns-returned-by-the-query/3.png){: height="200" .align-center}
 
-Далее можно использовать бинарный поиск для нахождения нужного значения. То есть передать 50. В случае ошибки взять 25. Если же успех, то 75. И так далее. Можно так же ткнуть на обум. На сайте мы видим 3 колонки. Звучит логично, что они все заполняются из БД. Подставлю значение 4 (для сокращения буду писать только часть пейлоада).
+Далее можно использовать бинарный поиск для нахождения нужного значения. То есть передать 50. В случае ошибки взять 25. Если же успех, то 75. И так далее. Можно так же ткнуть на обум. На сайте мы видим 3 колонки. Звучит логично, что они все заполняются из БД. Подставлю значение 4 (для сокращения буду писать только часть пейлоада):
 
 ```
 Accessories' ORDER BY 4-- -
@@ -83,7 +87,7 @@ Accessories' ORDER BY 4-- -
 
 Супер. ~~Сбер теперь купер~~.
 
-Я нашел количество столбцов. Попробую добавить `UNION` к своему пейлоаду, чтобы получить данные из БД.
+Я нашел количество столбцов. Попробую добавить `UNION` к своему пейлоаду, чтобы получить данные из БД:
   
 ```
 Accessories' UNION SELECT 1,2,3-- -
@@ -93,7 +97,7 @@ Accessories' UNION SELECT 1,2,3-- -
 
 ![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-determining-the-number-of-columns-returned-by-the-query/6.png){: height="200" .align-center}
 
-Оберну значения в кавычки.
+Оберну значения в кавычки:
 
 ```
 Accessories' and false UNION SELECT 1,2,3-- -
