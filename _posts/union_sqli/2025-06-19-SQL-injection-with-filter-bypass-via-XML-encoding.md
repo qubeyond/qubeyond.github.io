@@ -64,7 +64,7 @@ Content-Length: 17
 
 Скорее всего на сайте используется `WAF`. Для обхода попробую кодировать пейлод в `HEX` формат. Для этого `Burp Suite Academy` предлагает установить расширение [hackvertor](https://github.com/hackvertor/hackvertor/releases/tag/v1.8.10).
 
-![IMG](/assets/images/IMG_union_sql/IMG_SQL-injection-with-filter-bypass-via-XML-encoding/1.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-with-filter-bypass-via-XML-encoding/1.png){: height="200" .align-center}
 
 Итак, попробую подобрать пейлоад для поля `StoredId`:
 
