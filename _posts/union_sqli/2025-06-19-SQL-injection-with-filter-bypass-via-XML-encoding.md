@@ -11,6 +11,8 @@ header:
       url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-in-different-contexts/sql-injection/lab-sql-injection-with-filter-bypass-via-xml-encoding"
 ---
 
+Пост из пака **union_sqli**.
+
 ## Scope
 
 ```
