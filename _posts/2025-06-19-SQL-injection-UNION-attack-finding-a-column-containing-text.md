@@ -25,7 +25,7 @@ https://0ae10098047afc77a0e79a58006d0024.web-security-academy.net/filter?categor
 
 Теперь нужно найти обрамление параметра. Предположу, что запрос в БД выглядит следующим образом:
 
-```SQL
+```sql
 SELECT * FROM table WHERE category = 'Accessories'
 ```
 
