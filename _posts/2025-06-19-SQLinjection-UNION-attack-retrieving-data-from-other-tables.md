@@ -27,7 +27,7 @@ https://0afe00cb0435e68b8132b15500ae0073.web-security-academy.net/filter?categor
 
 Нужно подобрать обрамление. Пусть запрос выглядит следующим образом:
 
-```SQL
+```sql
 SELECT * FROM table WHERE category = 'Pets'
 ```
 
