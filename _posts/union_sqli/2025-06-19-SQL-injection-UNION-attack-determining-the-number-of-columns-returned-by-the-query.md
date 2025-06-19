@@ -2,7 +2,6 @@
 title: "SQL injection UNION attack, determining the number of columns returned by the query"
 date: 2025-06-19
 tags: [sqli, writeup]
-excerpt: "This post should [...]"
 header:
   overlay_image: /assets/images/ps_logo.webp
   overlay_filter: 0.5 
