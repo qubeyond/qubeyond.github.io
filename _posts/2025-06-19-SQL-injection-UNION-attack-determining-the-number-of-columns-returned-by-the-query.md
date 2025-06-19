@@ -3,7 +3,6 @@ title: "SQL injection UNION attack, determining the number of columns returned b
 date: 2025-06-19
 tags: [sql, writeup]
 ---
-
 ## Links
 
 **Source:** [Coffee Cube](https://t.me/coffee_cube)  
