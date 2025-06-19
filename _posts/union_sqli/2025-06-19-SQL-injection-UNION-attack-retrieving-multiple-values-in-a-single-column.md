@@ -11,6 +11,8 @@ header:
       url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-retrieving-multiple-values-within-a-single-column/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column"
 ---
 
+Пост из пака **union_sqli**.
+
 ## Scope
 
 ```
