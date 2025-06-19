@@ -17,7 +17,7 @@ https://0ae10098047afc77a0e79a58006d0024.web-security-academy.net/
 
 ## Solution
 
-Из задания известно, что **sqli**** находится в фильтре категории, поэтому возьму `URL` и буду работать с ним:
+Из задания известно, что **sqli** находится в фильтре категории, поэтому возьму `URL` и буду работать с ним:
 
 ```
 https://0ae10098047afc77a0e79a58006d0024.web-security-academy.net/filter?category=Accessories
