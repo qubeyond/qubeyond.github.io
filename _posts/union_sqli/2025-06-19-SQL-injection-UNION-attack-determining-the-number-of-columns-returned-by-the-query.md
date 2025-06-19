@@ -1,7 +1,7 @@
 ---
 title: "SQL injection UNION attack, determining the number of columns returned by the query"
 date: 2025-06-19
-tags: [sqli, writeup]  
+tags: [sqli, writeup, web]  
 tagline: ""
 header:
   overlay_image: /assets/images/ps_logo.webp
@@ -10,8 +10,6 @@ header:
     - label: "Lab PortSwigger"
       url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-determining-the-number-of-columns-required/sql-injection/union-attacks/lab-determine-number-of-columns"
 ---
-
-Пост из пака **union_sqli**.
 
 ## Scope
 
