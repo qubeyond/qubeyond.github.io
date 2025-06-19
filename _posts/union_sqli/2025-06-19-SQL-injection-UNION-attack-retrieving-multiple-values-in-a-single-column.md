@@ -41,7 +41,7 @@ SELECT * FROM table WHERE category = 'Accessories'
 Accessories' and false-- -
 ```
 
-![IMG](/assets/images/IMG_union_sql/IMG_SQL-injection-UNION-attack-retrieving-multiple-values-in-a-single-column/1.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-retrieving-multiple-values-in-a-single-column/1.png){: height="200" .align-center}
 
 Выдало пустую страницу без ошибок, значит в качестве обрамеления используется `'`.
 
@@ -64,7 +64,7 @@ Accessories' UNION SELECT 1, '2'-- -OK
 
 Я получил вот такое отображение на страницу:
 
-![IMG](/assets/images/IMG_union_sql/IMG_SQL-injection-UNION-attack-retrieving-multiple-values-in-a-single-column/2.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-retrieving-multiple-values-in-a-single-column/2.png){: height="200" .align-center}
 
 Значит отображается информация только из второй колонки, а мне нужно получить `login` и `password` из таблицы `table`. Это можно сделать с помощью двух запросов, либо же использовать конкатенацию строк с помощью `concat`. Мой пейлоад будет иметь следующий вид:
 
@@ -74,7 +74,7 @@ Accessories' UNION SELECT 1, concat('1', '2')-- -
 
 А вот так это отображается на странице:
 
-![IMG](/assets/images/IMG_union_sql/IMG_SQL-injection-UNION-attack-retrieving-multiple-values-in-a-single-column/3.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-retrieving-multiple-values-in-a-single-column/3.png){: height="200" .align-center}
 
 Теперь попробую получить нужные данные. Я добавил условие `0=1`. Теперь у меня отображается только вторая часть моего запроса, то есть логины и пароли:
 
@@ -84,10 +84,10 @@ Accessories' and 0=1 UNION SELECT NULL, concat(username, ':' ,password) FROM use
 
 Я получил следующий вывод:
 
-![IMG](/assets/images/IMG_union_sql/IMG_SQL-injection-UNION-attack-retrieving-multiple-values-in-a-single-column/4.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-retrieving-multiple-values-in-a-single-column/4.png){: height="200" .align-center}
 
 Теперь зайду в аккаунт под пользователем `administrator`:
 
-![IMG](/assets/images/IMG_union_sql/IMG_SQL-injection-UNION-attack-retrieving-multiple-values-in-a-single-column/5.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-retrieving-multiple-values-in-a-single-column/5.png){: height="200" .align-center}
 
 Победа)
