@@ -99,6 +99,6 @@ Content-Length: 30
 
 Проверю пароль:
 
-![IMG](/assets/images/IMG_union_sql/IMG_SQL-injection-with-filter-bypass-via-XML-encoding/2.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-with-filter-bypass-via-XML-encoding/2.png){: height="200" .align-center}
 
 Я в системе)
