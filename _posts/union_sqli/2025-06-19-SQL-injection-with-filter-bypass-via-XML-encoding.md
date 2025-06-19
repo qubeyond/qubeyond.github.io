@@ -11,16 +11,11 @@ header:
       url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-in-different-contexts/sql-injection/lab-sql-injection-with-filter-bypass-via-xml-encoding"
 ---
 
-Пост из пака **union_sqli**.
-
-## Scope
+В лабе есть уязвимая к **SQL injection** проверка товара в магазине. В БД есть таблица `users`, которая содержит в себе списки зарегистрированных пользователей с их паролями. Для прохождения нужно получить доступ к личному кабинету администратора.
 
 ```
 https://0a870041040afc00b575af4f00f900e1.web-security-academy.net/
 ```
-
-В лабе есть уязвимая к **SQL injection** проверка товара в магазине. В БД есть таблица `users`, которая содержит в себе списки зарегистрированных пользователей с их паролями. Для прохождения нужно получить доступ к личному кабинету администратора.
-
 
 ## Solution
 
@@ -47,7 +42,7 @@ Te: trailers
 <?xml version="1.0" encoding="UTF-8"?><stockCheck><productId>1</productId><storeId>1</storeId></stockCheck>
 ```
 
-Можно заметить, что тело запроса содержит `XML` документ. В нем есть 2 значения: `productId` и `storedId`. Попробую подставить пейлоад в эти параметры:
+Можно заметить, что тело запроса содержит `XML` документ. В нем есть 2 значения: `productId` и `storeId`. Попробую подставить пейлоад в эти параметры:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?><stockCheck><productId>1</productId><storeId>1';</storeId></stockCheck>
@@ -68,7 +63,7 @@ Content-Length: 17
 
 ![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-with-filter-bypass-via-XML-encoding/1.png){: height="200" .align-center}
 
-Итак, попробую подобрать пейлоад для поля `StoredId`:
+Итак, попробую подобрать пейлоад для поля `storeId`:
 
 ```
 1+1 - Ok
