@@ -1,7 +1,10 @@
 ---
 title: "SQL injection UNION attack retrieving multiple values in a single column"
 date: 2025-06-19
-tags: [sql, writeup]
+tags: [sqli, writeup]
+header:
+  overlay_image: /assets/images/ps_logo.webp
+  overlay_filter: 0.5 
 ---
 
 **Source:** [Coffee Cube](https://t.me/coffee_cube)  
