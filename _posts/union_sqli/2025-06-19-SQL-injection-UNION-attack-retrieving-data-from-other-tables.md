@@ -11,16 +11,11 @@ header:
       url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-using-a-sql-injection-union-attack-to-retrieve-interesting-data/sql-injection/union-attacks/lab-retrieve-data-from-other-tables"
 ---
 
-Пост из пака **union_sqli**.
-
-## Scope
+В данной лабе есть уязвимый к **SQL injection** фильтр категории. В БД есть таблицы с именам `users` и колонками `username` и `password`. Нужно получить информацию из БД, чтобы зайти в аккаунт `administrator`.
 
 ```
 https://0afe00cb0435e68b8132b15500ae0073.web-security-academy.net/
 ```
-
-В данной лабе есть уязвимый к **SQL injection** фильтр категории. В БД есть таблицы с именам `users` и колонками `username` и `password`. Нужно получить информацию из БД, чтобы зайти в аккаунт `administrator`.
-
 
 ## Solution
 
@@ -69,6 +64,7 @@ Pets' and false UNION SELECT username, password FROM users WHERE username = 'adm
 
 ![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-retrieving-data-from-other-tables/2.png){: height="200" .align-center}
 
+Лаба решена:3
 Получил креды: `administrator`:`5j1o1b7ls5ltyvanoo42`. Зайду в аккаунт: 
 
 ![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-retrieving-data-from-other-tables/3.png){: height="200" .align-center}
