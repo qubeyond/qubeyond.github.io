@@ -5,7 +5,7 @@ tags: [sqli, writeup]
 excerpt: "This post should [...]"
 header:
   overlay_image: /assets/images/ps_logo.png
-  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
+  overlay_filter: 0.8 
 ---
 
 **Source:** [Coffee Cube](https://t.me/coffee_cube)  
