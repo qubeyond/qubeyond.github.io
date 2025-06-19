@@ -4,7 +4,7 @@ date: 2025-06-19
 tags: [sqli, writeup]  
 actions:
     - label: "Lab PortSwigger"
-      url: "https://unsplash.com](https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-determining-the-number-of-columns-required/sql-injection/union-attacks/lab-determine-number-of-columns"
+      url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-determining-the-number-of-columns-required/sql-injection/union-attacks/lab-determine-number-of-columns"
 header:
   overlay_image: /assets/images/ps_logo.webp
   overlay_filter: 0.5 
