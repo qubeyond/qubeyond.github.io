@@ -2,7 +2,7 @@
 title: "Visible error-based SQL injection"
 date: 2025-06-19
 tags: [sqli, writeup]  
-tagline: "union sqli"
+tagline: ""
 header:
   overlay_image: /assets/images/ps_logo.webp
   overlay_filter: 0.5 
@@ -10,6 +10,8 @@ header:
     - label: "Lab PortSwigger"
       url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-error-based-sql-injection/sql-injection/blind/lab-sql-injection-visible-error-based"
 ---
+
+Пост из пака **union_sqli**.
 
 ## Scope
 
