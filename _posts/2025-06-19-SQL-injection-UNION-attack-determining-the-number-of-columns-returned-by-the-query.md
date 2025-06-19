@@ -27,7 +27,7 @@ https://0a1600ed036880cd8c118c7100de00ed.web-security-academy.net/filter?categor
 
 Теперь нужно найти символ обрамления для параметра. Предположим, что запрос выглядит следующим образом:
 
-```SQL
+```sql
 SELECT name, price FROM table WHERE category = 'Accessories'
 ```
 
@@ -43,7 +43,7 @@ https://0a1600ed036880cd8c118c7100de00ed.web-security-academy.net/filter?categor
 
 Запрос к БД выглядел следующим образом:
 
-```SQL
+```sql
 SELECT name, price FROM table WHERE category = 'Accessories' and false -- -'
 ```
 
