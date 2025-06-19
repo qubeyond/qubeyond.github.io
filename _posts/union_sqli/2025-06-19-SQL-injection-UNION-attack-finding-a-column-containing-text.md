@@ -1,15 +1,15 @@
 ---
 title: "SQL injection UNION attack, finding a column containing text"
 date: 2025-06-19
-tags: [sqli, writeup]
+tags: [sqli, writeup]  
+tagline: ""
 header:
   overlay_image: /assets/images/ps_logo.webp
   overlay_filter: 0.5 
+  actions:
+    - label: "Lab PortSwigger"
+      url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-finding-columns-with-a-useful-data-type/sql-injection/union-attacks/lab-find-column-containing-text"
 ---
-
-**Source:** [Coffee Cube](https://t.me/coffee_cube)  
-**Lab:** [PortSwigger](https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-finding-columns-with-a-useful-data-type/sql-injection/union-attacks/lab-find-column-containing-text)
-
 
 ## Scope
 ```
