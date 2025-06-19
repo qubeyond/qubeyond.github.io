@@ -11,16 +11,11 @@ header:
       url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-retrieving-multiple-values-within-a-single-column/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column"
 ---
 
-Пост из пака **union_sqli**.
-
-## Scope
+В данной лабе есть уязвимый к **SQL injection** фильтр категории. В БД есть таблицы с именам `users` и колонками `username` и `password`. Для решения лабораторной работы нужно выполнить атаку с помощью `SQL`-инъекции, войдя под пользователем `administrator`.
 
 ```
 https://0a3300e7041babb2811b346f0068004e.web-security-academy.net/
 ```
-
-В данной лабе есть уязвимый к **SQL injection** фильтр категории. В БД есть таблицы с именам `users` и колонками `username` и `password`. Для решения лабораторной работы нужно выполнить атаку с помощью `SQL`-инъекции, войдя под пользователем `administrator`.
-
 
 ## Solution
 
@@ -29,7 +24,6 @@ https://0a3300e7041babb2811b346f0068004e.web-security-academy.net/
 ```
 https://0a3300e7041babb2811b346f0068004e.web-security-academy.net/filter?category=Accessories
 ```
-
 
 Следующим моим шагом будет подбор обрамления. Предположу, что запрос выглядит так:
 
@@ -46,7 +40,6 @@ Accessories' and false-- -
 ![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-retrieving-multiple-values-in-a-single-column/1.png){: height="200" .align-center}
 
 Выдало пустую страницу без ошибок, значит в качестве обрамеления используется `'`.
-
 
 Далее узнаю количество колонок в запросе с помощью `ORDER BY`:
 
