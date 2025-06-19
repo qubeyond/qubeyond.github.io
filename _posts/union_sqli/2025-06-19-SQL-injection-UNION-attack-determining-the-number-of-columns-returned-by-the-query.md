@@ -11,13 +11,11 @@ header:
       url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-determining-the-number-of-columns-required/sql-injection/union-attacks/lab-determine-number-of-columns"
 ---
 
-## Scope
+В данной лабе есть уязвимый к **SQL injection** фильтр категории. Для решения необходимо выполнить атаку, которая должна вывести дополнительную строку с `NULL` значениями.
 
 ```
 https://0a1600ed036880cd8c118c7100de00ed.web-security-academy.net/
 ```
-
-В данной лабе есть уязвимый к **SQL injection** фильтр категории. Для решения необходимо выполнить атаку, которая должна вывести дополнительную строку с `NULL` значениями.
 
 ## Solution
 
