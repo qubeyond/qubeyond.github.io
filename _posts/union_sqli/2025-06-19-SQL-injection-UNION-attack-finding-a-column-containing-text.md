@@ -11,15 +11,11 @@ header:
       url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-finding-columns-with-a-useful-data-type/sql-injection/union-attacks/lab-find-column-containing-text"
 ---
 
-Пост из пака **union_sqli**.
+В данной лабе есть уязвимый к **SQL injection** фильтр категории. Нужно найти столбец, в котором используются строки.
 
-## Scope
 ```
 https://0ae10098047afc77a0e79a58006d0024.web-security-academy.net/
 ```
-
-В данной лабе есть уязвимый к **SQL injection** фильтр категории. Нужно найти столбец, в котором используются строки.
-
 
 ## Solution
 
@@ -67,7 +63,6 @@ Accessories' UNION SELECT NULL, NULL, NULL-- -
 Только сейчас заметил, что нужно вывести определенную строку) Ну ок.
 
 ![IMG](/assets/images/IMG_union_sqli/IMG_SQL-injection-UNION-attack-finding-a-column-containing-text/2.png){: height="200" .align-center}
-
 
 ```
 Accessories' UNION SELECT 'xCxqZ9', NULL, NULL-- -ошибка
