@@ -11,6 +11,8 @@ header:
       url: "https://portswigger.net/web-security/learning-paths/sql-injection/sql-injection-finding-columns-with-a-useful-data-type/sql-injection/union-attacks/lab-find-column-containing-text"
 ---
 
+Пост из пака **union_sqli**.
+
 ## Scope
 ```
 https://0ae10098047afc77a0e79a58006d0024.web-security-academy.net/
