@@ -1,7 +1,7 @@
 ---
 title: "Blind OS command injection with time delays"
-date: 2025-06-26
-tags: [os_command_injection, writeup, web]  
+date: 2025-06-27
+tags: [injection, writeup, web]  
 categories: [PortSwigger]
 tagline: ""
 header:
