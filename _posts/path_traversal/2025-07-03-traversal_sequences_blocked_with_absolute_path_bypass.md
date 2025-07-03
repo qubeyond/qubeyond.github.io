@@ -44,7 +44,7 @@ https://0a68000e03cb5f058043582300db0088.web-security-academy.net/image?filename
 
 Я получил следующую ошибку отображения картинки:
 
-![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_traversal_sequences_blocked_with_absolute_path_bypass/1.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_traversal_sequences_blocked_with_absolute_path_bypass/2.png){: height="200" .align-center}
 
 Попробую посмотреть ответ через `curl`:
 
