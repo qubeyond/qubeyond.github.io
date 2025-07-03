@@ -52,7 +52,7 @@ https://0a870035033fc1ba80e0713b009800d3.web-security-academy.net/image?filename
 
 Я получил ошибку:
 
-![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_traversal_sequences_stripped_with_superfluous_URL-decode/3.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_traversal_sequences_stripped_with_superfluous_URL-decode/3.png){: height="500" .align-center}
 
 Содержимое можно получить с помощью `curl`:
 
