@@ -1,0 +1,615 @@
+---
+title: "ffuf tool"
+date: 2025-07-07
+tags: [tools, web]  
+categories: [Tools]
+tagline: ""
+header:
+  overlay_image: ...
+  overlay_filter: 0.5 
+  overlay_color: "#fff"
+classes: wide
+---
+
+# ffuf 
+
+Инструмент для фаззинга веб-приложений. Используется для поиска скрытых директорий с помощью перебора.
+
+## Флаги
+
+HTTP ОПЦИИ:
+- `-H` - заголовок `HTTP` запроса в формате `"Имя: Значение"`. Можно использовать несколько параметров `-H`;
+- `-X` - HTTP метод для использования (по умолчанию: GET). [Пример использования](#flag-X)
+- `-b `- Данные Cookie `"ИМЯ1=ЗНАЧЕНИЕ1; ИМЯ2=ЗНАЧЕНИЕ2"` для функциональности копирования как в curl.
+- `-d` - Данные POST;
+- `-r` - Переходить по перенаправлениям (по умолчанию: **false**)
+- `-recursion` - Сканировать рекурсивно. Поддерживается только ключевое слово **FUZZ**, и **URL** (`-u`) должен заканчиваться на него. (по умолчанию: **false**)
+- `-recursion-depth` - Максимальная глубина рекурсии. (по умолчанию: **0**)
+- `-replay-proxy` - Повторять совпадающие запросы с использованием этого прокси.
+- `-timeout ` - Тайм-аут HTTP-запроса в секундах. (по умолчанию: **10**);
+- `-u` - Целевой `URL`;
+- `-x` - `URL` `HTTP`-прокси;
+- 
+ОБЩИЕ ОПЦИИ:
+- `-V` - Показать информацию о версии. (по умолчанию: **false**)
+- `-ac` - Автоматическая калибровка параметров фильтрации (по умолчанию: **false**)
+- `-acc ` - Пользовательская строка автоматической калибровки. Может использоваться несколько раз. Подразумевает `-ac`
+- `-c` - Окрашивать вывод. (по умолчанию: **false**)
+- `-maxtime` - Максимальное время выполнения в секундах. (по умолчанию: **0**)
+- `-p` - Задержка между запросами в секундах или диапазон случайной задержки. Например, `"0.1"` или `"0.1-2.0"`
+- `-s` - Не печатать дополнительную информацию (тихий режим) (по умолчанию: **false**)
+- `-sa` - Остановиться при всех случаях ошибок. Подразумевает `-sf` и `-se`. (по умолчанию: **false**)
+- `-se` - Остановиться при случайных ошибках (по умолчанию: **false**)
+- `-sf ` - Остановиться, если > 95% ответов возвращают 403 Forbidden (по умолчанию: **false**)
+- `-t ` - Количество одновременных потоков. (по умолчанию: **40**)
+- `-v` - Подробный вывод, печать полного `URL` и места перенаправления (если есть) с результатами. (по умолчанию: **false**)
+
+ОПЦИИ СОПОСТАВЛЕНИЯ:
+- `-mc` - Соответствие кодам состояния `HTTP` или "all" для всего. (по умолчанию: 200,204,301,302,307,401,403)
+- `-ml` - Соответствие количеству строк в ответе
+- `-mr` - Соответствие регулярному выражению
+- `-ms` - Соответствие размеру `HTTP`-ответа
+- `-mw` - Соответствие количеству слов в ответе
+
+ОПЦИИ ФИЛЬТРАЦИИ:
+- `-fc` - Фильтровать коды состояния `HTTP` из ответа. Список кодов и диапазонов, разделенных запятыми
+- `-fl` - Фильтровать по количеству строк в ответе. Список количеств строк и диапазонов, разделенных запятыми
+- `-fr` - Фильтровать по регулярному выражению
+- `-fs` -  Фильтровать по размеру `HTTP`-ответа. Список размеров и диапазонов, разделенных запятыми
+- `-fw` - Фильтровать по количеству слов в ответе. Список количеств слов и диапазонов, разделенных запятыми
+
+ОПЦИИ ВВОДА:
+- `-D` - Режим совместимости с `wordlist` `DirSearch`. Используется совместно с флагом `-e`. (по умолчанию: **false**)
+- `-e` - Список расширений, разделенных запятыми. Расширяет ключевое слово **FUZZ**.
+- `-ic` - Игнорировать комментарии в `wordlist` (по умолчанию: **false**)
+- `-input-cmd` - Команда, создающая ввод. `--input-num `обязателен при использовании этого метода ввода. Переопределяет `-w`.
+- `-input-num` - Количество входных данных для тестирования. Используется совместно с `--input-cmd`. (по умолчанию: **100**)
+- `-mode` - Режим многопользовательского взаимодействия с `wordlist`. Доступные режимы: `clusterbomb`, `pitchfork` (по умолчанию: `clusterbomb`)
+- `-request` - Файл, содержащий сырой `HTTP`-запрос
+- `-request-proto` - Протокол, используемый вместе с сырым запросом (по умолчанию: **https**)
+- `-w` - Путь к файлу `wordlist` и (необязательно) ключевое слово, разделенное двоеточием. например `/путь/к/wordlist:КЛЮЧЕВОЕ_СЛОВО`
+
+ОПЦИИ ВЫВОДА:
+- `-debug-log` - Записать все внутренние журналы в указанный файл.
+- `-o` - Записать вывод в файл
+- `-od` - Путь каталога для сохранения совпадающих результатов.
+- `-of` - Формат файла вывода. Доступные форматы: `json`, `ejson`, `html`, `md`, `csv`, `ecsv` (по умолчанию: `json`)
+
+## Установка 
+
+Установка `wordlists`:
+
+```bash
+cd ~  
+mkdir wordlists  
+cd wordlists  
+wget http://ffuf.me/wordlist/common.txt  
+wget http://ffuf.me/wordlist/parameters.txt  
+wget http://ffuf.me/wordlist/subdomains.txt
+```
+
+## Username enumeration {: #flag-X}
+
+Для Перебор пользователей можно использовать флаг `-X` для отправки `POST` запросов и флаг `-d` для установки тела запроса.
+
+### Пример
+
+В данном примере при вводе не правильного логина выводится сообщения об ошибке.
+
+![[Pasted image 20240501171213.png]]
+
+Чтобы войти в аккаунт на сервер отправляется `POST` следующий `POST` запрос:
+
+```HTTP
+POST /login HTTP/2
+Host: 0aed007204edce5285af7b550032008d.web-security-academy.net/login
+Cookie: session=A2mZdRv71ZtY7jlsemzgtHkRmx8tiDQo
+Content-Length: 35
+Cache-Control: max-age=0
+Sec-Ch-Ua: "Not-A.Brand";v="99", "Chromium";v="124"
+Sec-Ch-Ua-Mobile: ?0
+Sec-Ch-Ua-Platform: "Linux"
+Upgrade-Insecure-Requests: 1
+Origin: https://0a03003203ac78008601588400b10000.web-security-academy.net
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.6367.60 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: https://0a03003203ac78008601588400b10000.web-security-academy.net/login
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Priority: u=0, i
+
+username=USERFUZZ&password=PASSFUZZ
+```
+
+Можно попробовать перебрать username с помощью следующей команды.
+
+```bash
+ffuf -w ~/wordlists/portswigger_login.txt -X POST -d "username=FUZZ&password=x" -u https://0aed007204edce5285af7b550032008d.web-security-academy.net/login
+```
+
+В ответах можно увидеть, что для логина `atlanta` длина ответа отличается от остальных. Попробую ввести его.
+
+![[Pasted image 20240501171656.png]]
+
+Теперь можно попробовать перебрать пароль таким же образом.
+## Content Discovery Basic
+
+Через `ffuf` нужно найти утекшие файлы на сайте. Попробуем пофаззить данный `URL` `http://ffuf.me/cd/basic`.
+
+```bash
+cu63:~/ $ ffuf -u http://ffuf.me/cd/basic/FUZZ -w wordlists/common.txt
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me/cd/basic/FUZZ
+ :: Wordlist         : FUZZ: /Users/cu63/wordlists/common.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+class                   [Status: 200, Size: 19, Words: 4, Lines: 1, Duration: 173ms]
+development.log         [Status: 200, Size: 19, Words: 4, Lines: 1, Duration: 96ms]
+:: Progress: [4686/4686] :: Job [1/1] :: 253 req/sec :: Duration: [0:00:12] :: Errors: 0 ::
+```
+
+## Content Discovery - Recursion
+
+Флаг `-recursion` полезен в случая, когда нужно проверить все возможные пути и поддиректории, в частности для обнаружения `API`-ендпоитов. Попробуем найти все файлы тут `http://ffuf.me/cd/recursion`.
+
+```bash
+cu63:~/ $ ffuf -u http://ffuf.me/cd/recursion/FUZZ -w wordlists/common.txt -recursion
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me/cd/recursion/FUZZ
+ :: Wordlist         : FUZZ: /Users/cu63/wordlists/common.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+admin                   [Status: 301, Size: 0, Words: 1, Lines: 1, Duration: 81ms]
+[INFO] Adding a new job to the queue: http://ffuf.me/cd/recursion/admin/FUZZ
+
+[INFO] Starting queued job on target: http://ffuf.me/cd/recursion/admin/FUZZ
+
+users                   [Status: 301, Size: 0, Words: 1, Lines: 1, Duration: 487ms]
+[INFO] Adding a new job to the queue: http://ffuf.me/cd/recursion/admin/users/FUZZ
+
+[INFO] Starting queued job on target: http://ffuf.me/cd/recursion/admin/users/FUZZ
+
+96                      [Status: 200, Size: 19, Words: 4, Lines: 1, Duration: 94ms]
+:: Progress: [4686/4686] :: Job [3/3] :: 408 req/sec :: Duration: [0:00:10] :: Errors: 0 ::
+```
+
+## Content Discovery - File Extensions
+
+Флаг `-e` полезен, когда мы хотим искать файлы с определенным расширения. Это может быть `.js`, `.log`, `.xml` и т.д.
+
+Попробуем найти файл с расширением `.log` на данном ендпоинте `http://ffuf.me/cd/ext`.
+
+```bash
+cu63:~/ $ ffuf -u http://ffuf.me/cd/ext/FUZZ -recursion -e .log -w wordlists/common.txt
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me/cd/ext/FUZZ
+ :: Wordlist         : FUZZ: /Users/cu63/wordlists/common.txt
+ :: Extensions       : .log
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+logs                    [Status: 301, Size: 0, Words: 1, Lines: 1, Duration: 415ms]
+[INFO] Adding a new job to the queue: http://ffuf.me/cd/ext/logs/FUZZ
+
+[INFO] Starting queued job on target: http://ffuf.me/cd/ext/logs/FUZZ
+
+users.log               [Status: 200, Size: 19, Words: 4, Lines: 1, Duration: 96ms]
+:: Progress: [9372/9372] :: Job [2/2] :: 437 req/sec :: Duration: [0:00:23] :: Errors: 0 ::
+```
+
+## Content Discovery - No 404 Status
+
+Часто встречаются случаи, когда запрос к несуществующей странице обрабатывается и мы получаем ответ со статус кодом `200`.  Если запустить фаззер обычным образом на `URL` `http://ffuf.me/cd/no404`, то каждый запрос будет попаданием)
+
+```bash
+ffuf -u http://ffuf.me/cd/no404/FUZZ -w wordlists/common.txt
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me/cd/no404/FUZZ
+ :: Wordlist         : FUZZ: /Users/cu63/wordlists/common.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+.git_release            [Status: 200, Size: 669, Words: 126, Lines: 23, Duration: 98ms]
+.listings               [Status: 200, Size: 669, Words: 126, Lines: 23, Duration: 98ms]
+.cvsignore              [Status: 200, Size: 669, Words: 126, Lines: 23, Duration: 98ms]
+.htaccess               [Status: 200, Size: 669, Words: 126, Lines: 23, Duration: 98ms]
+.forward                [Status: 200, Size: 669, Words: 126, Lines: 23, Duration: 98ms]
+.bashrc                 [Status: 200, Size: 669, Words: 126, Lines: 23, Duration: 98ms]
+.gitmodules             [Status: 200, Size: 669, Words: 126, Lines: 23, Duration: 98ms]
+.git/index              [Status: 200, Size: 669, Words: 126, Lines: 23, Duration: 98ms]
+.rhosts                 [Status: 200, Size: 669, Words: 126, Lines: 23, Duration: 98ms]
+.swf                    [Status: 200, Size: 669, Words: 126, Lines: 23, Duration: 98ms]
+```
+
+ Перейду по первой же ссылке `http://ffuf.me/cd/no404/.git_release`:
+ 
+![[Pasted image 20250706204622.png]]
+
+А вот и причина. Для того, чтобы отбросить не нужные варианты можно применять различные фильтры. Попробуйте получить правильные ендпоинты)
+
+```bash
+cu63:~/ $ ffuf -u http://ffuf.me/cd/no404/FUZZ -w wordlists/common.txt -fs 669
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me/cd/no404/FUZZ
+ :: Wordlist         : FUZZ: /Users/cu63/wordlists/common.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+ :: Filter           : Response size: 669
+________________________________________________
+
+secret                  [Status: 200, Size: 25, Words: 4, Lines: 1, Duration: 96ms]
+:: Progress: [4686/4686] :: Job [1/1] :: 443 req/sec :: Duration: [0:00:11] :: Errors: 0 ::
+```
+
+## Content Discovery - Param Mining
+
+Так же фаззинг отлично подходит для поиска скрытых параметров. Для этого `FUZZ` подставляется в `URL` следующим образом `https://some-site.com/page?FUZZ=1`.
+
+Давайте попробуем их для данного запроса `http://ffuf.me/cd/param/data`.
+
+```bash
+cu63:~/ $ ffuf -u 'http://ffuf.me/cd/param/data?FUZZ=1' -w wordlists/parameters.txt
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me/cd/param/data?FUZZ=1
+ :: Wordlist         : FUZZ: /Users/cu63/wordlists/parameters.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+debug                   [Status: 200, Size: 24, Words: 3, Lines: 1, Duration: 98ms]
+:: Progress: [2588/2588] :: Job [1/1] :: 442 req/sec :: Duration: [0:00:06] :: Errors: 0 ::
+```
+
+## Content Discovery - Rate Limited
+
+На многих сайтах можно встретить ограничение на количество запросов в секунду. 
+
+Попробуем пофаззить данный `URL` `http://ffuf.me/cd/rate`:
+
+```bash
+cu63:~/ $ ffuf -u http://ffuf.me/cd/rate/FUZZ -w wordlists/common.txt
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me/cd/rate/FUZZ
+ :: Wordlist         : FUZZ: /Users/cu63/wordlists/common.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+:: Progress: [4686/4686] :: Job [1/1] :: 441 req/sec :: Duration: [0:00:11] :: Errors: 0 ::
+```
+
+Ничего не найдено. Чтобы выяснить причину добавим `429` в отображаемые с помощью `-mc 429`:
+
+```bash
+ffuf -u http://ffuf.me/cd/rate/FUZZ -w wordlists/common.txt -mc 429
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me/cd/rate/FUZZ
+ :: Wordlist         : FUZZ: /Users/cu63/wordlists/common.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 429
+________________________________________________
+
+.well-known/oauth-authorization-server [Status: 429, Size: 178, Words: 8, Lines: 8, Duration: 100ms]
+.well-known/openpgpkey  [Status: 429, Size: 178, Words: 8, Lines: 8, Duration: 101ms]
+.well-known/reload-config [Status: 429, Size: 178, Words: 8, Lines: 8, Duration: 82ms]
+.well-known/pvd         [Status: 429, Size: 178, Words: 8, Lines: 8, Duration: 84ms]
+.well-known/posh        [Status: 429, Size: 178, Words: 8, Lines: 8, Duration: 84ms]
+.well-known/security.txt [Status: 429, Size: 178, Words: 8, Lines: 8, Duration: 84ms]
+.well-known/resourcesync [Status: 429, Size: 178, Words: 8, Lines: 8, Duration: 89ms]
+.well-known/thread      [Status: 429, Size: 178, Words: 8, Lines: 8, Duration: 83ms]
+.well-known/stun-key    [Status: 429, Size: 178, Words: 8, Lines: 8, Duration: 88ms]
+.well-known/timezone    [Status: 429, Size: 178, Words: 8, Lines: 8, Duration: 96ms]
+.well-known/webfinger   [Status: 429, Size: 178, Words: 8, Lines: 8, Duration: 93ms]
+```
+
+А вот и причина. `429` ошибка - это `Too Many Requests`. Замедлим наш фаззер выставив задержку между запросами `-p 0.1`. Для увеличения скорости можно запустить несколько фаззеров одновременно с помощью флага `-t`.
+
+```bash
+cu63:~/ $ ffuf -u http://ffuf.me/cd/rate/FUZZ -w wordlists/common.txt -p 0.1 -t 5
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me/cd/rate/FUZZ
+ :: Wordlist         : FUZZ: /Users/cu63/wordlists/common.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 5
+ :: Delay            : 0.10 seconds
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+oracle                  [Status: 200, Size: 19, Words: 4, Lines: 1, Duration: 97ms]
+:: Progress: [4686/4686] :: Job [1/1] :: 26 req/sec :: Duration: [0:03:01] :: Errors: 0 ::
+```
+
+## Content Discovery - Pipes
+
+Иногда не разумно хранить словарь каких либо знанений, например числовых `id`. В таком случае можно использовать `pipes`. Для этого напишу простейший цикл на `Python`:
+
+```python
+for i in range(1, 1000):
+    print(i)
+```
+
+Далее перенаправлю его вывод через `pipes` в `fuff`. Для того, чтобы `ffuf` принимал значения из пайпа нужно использовать следующий синтаксис `-w -`.
+
+Попробую это на данном `URL` `http://ffuf.me/cd/pipes`:
+
+```bash
+python pipe.py $>2 | ffuf -w - -u 'http://ffuf.me/cd/pipes/user?id=FUZZ'
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me/cd/pipes/user?id=FUZZ
+ :: Wordlist         : FUZZ: -
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+657                     [Status: 200, Size: 13, Words: 3, Lines: 1, Duration: 83ms]
+:: Progress: [999/999] :: Job [1/1] :: 460 req/sec :: Duration: [0:00:02] :: Errors: 0 ::
+```
+
+  Так же значения могу храниться в закодированом виде:`base64`, `URL-encode`. Возможно даже используеются хеши от значений. Для перебора таких параметров так-же удобно использовать пайпы.
+  
+ Попробуйте найти нужное значение в `base64` для этого `URL` `http://ffuf.me/cd/pipes/user2`.
+ 
+```python
+import base64
+
+for i in range(1, 1000):
+    print((base64.b64encode(str(i).encode('utf-8')).decode()))
+```
+
+```bash
+python pipe.py | ffuf -w - -u 'http://ffuf.me/cd/pipes/user2?id=FUZZ'
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me/cd/pipes/user2?id=FUZZ
+ :: Wordlist         : FUZZ: -
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+ODg4                    [Status: 200, Size: 13, Words: 3, Lines: 1, Duration: 94ms]
+:: Progress: [999/999] :: Job [1/1] :: 438 req/sec :: Duration: [0:00:02] :: Errors: 0 ::
+```
+
+ А тут уже нужен `md5` `http://ffuf.me/cd/pipes/user3`.
+
+Напишу скрипт:
+
+```python
+import hashlib
+
+
+for num in range(1, 1001):
+    num_str = str(num)
+    num_bytes = num_str.encode('utf-8')
+    m = hashlib.md5()
+    m.update(num_bytes)
+    print(m.hexdigest())
+```
+
+Использую пайп:
+
+```bash
+cu63:~/ $ python ./pipe.py| ffuf -w - -u 'http://ffuf.me/cd/pipes/user3?id=FUZZ'
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me/cd/pipes/user3?id=FUZZ
+ :: Wordlist         : FUZZ: -
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+________________________________________________
+
+4daa3db355ef2b0e64b472968cb70f0d [Status: 200, Size: 13, Words: 3, Lines: 1, Duration: 92ms]
+:: Progress: [1000/1000] :: Job [1/1] :: 431 req/sec :: Duration: [0:00:02] :: Errors: 0 ::
+```
+
+## Subdomains - Virtual Host Enumeration
+
+Можно аналогичным образом искать субдомены. Для этого можно использовать `HTTP`-заголовок `Host`, чтобы указать домен. В `ffuf` для этого используется флаг `-H`:
+`-h "Host: FUZZ.ffuf.me"`.
+
+Найдете валидный субдомен.
+
+```bash
+ffuf -w wordlists/subdomains.txt -u http://ffuf.me -H "Host: FUZZ.ffuf.me" -fs 1495
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://ffuf.me
+ :: Wordlist         : FUZZ: /Users/cu63/wordlists/subdomains.txt
+ :: Header           : Host: FUZZ.ffuf.me
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500
+ :: Filter           : Response size: 1495
+________________________________________________
+
+redhat                  [Status: 200, Size: 15, Words: 2, Lines: 1, Duration: 93ms]
+:: Progress: [1907/1907] :: Job [1/1] :: 429 req/sec :: Duration: [0:00:04] :: Errors: 0 ::
+```
