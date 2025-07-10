@@ -182,7 +182,7 @@ X-Custom-Ip-Authorization: 127.0.0.1
 
 Получилось)
 
-![IMG](/assets/images/PortSwigger/IMG_Authentication_bypass_via_information_disclosure/1.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Authentication_bypass_via_information_disclosure/1.png){: height="200" .align-center}
 
 Для удобства сделаю это в браузере. Для этого нажму правой кнопкой мыши на мой запрос и выберу пункт `Show response in browser`. Теперь удалю пользователя, включив проки, чтобы подставить нужное значение:
 
@@ -207,4 +207,4 @@ X-Custom-Ip-Authorization: 127.0.0.1
 
 Пользователь удален, а значит лаба решена.
 
-![IMG](/assets/images/PortSwigger/IMG_Authentication_bypass_via_information_disclosure/2.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Authentication_bypass_via_information_disclosure/2.png){: height="200" .align-center}
