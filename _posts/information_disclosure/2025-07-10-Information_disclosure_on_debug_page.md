@@ -59,11 +59,11 @@ filter                  [Status: 200, Size: 10960, Words: 5122, Lines: 201, Dura
 
 `cgi-bin`:
 
-![IMG](/assets/images/PortSwigger/IMG_Information_disclosure_on_debug_page/1.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Information_disclosure_on_debug_page/1.png){: height="200" .align-center}
 
 Любопытно, открою:
 
-![IMG](/assets/images/PortSwigger/IMG_Information_disclosure_on_debug_page/2.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Information_disclosure_on_debug_page/2.png){: height="200" .align-center}
 
 Похоже на информацию о сервере. Поищу нужный мне ключ `SECRET_KEY`:
 
