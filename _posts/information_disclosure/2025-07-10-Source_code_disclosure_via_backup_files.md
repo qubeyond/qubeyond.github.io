@@ -56,7 +56,7 @@ filter                  [Status: 200, Size: 10877, Words: 5099, Lines: 200, Dura
 
 Нашел интересную страницу — `backup`. Посмотрю, что же там)
 
-![IMG](/assets/images/PortSwigger/IMG_Source_code_disclosure_via_backup_files/1.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Source_code_disclosure_via_backup_files/1.png){: height="200" .align-center}
 
 Скачаю файл:
 
@@ -130,4 +130,4 @@ public class ProductTemplate implements Serializable
 
 Это код на `Java` ~~терпеть ее не могу~~, который работает с БД. А креды находятся прямо в коде — `any51oqtktpkqkoamc5rfyp44pa5lbig`.
 
-![IMG](/assets/images/PortSwigger/IMG_Source_code_disclosure_via_backup_files/2.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Source_code_disclosure_via_backup_files/2.png){: height="200" .align-center}
