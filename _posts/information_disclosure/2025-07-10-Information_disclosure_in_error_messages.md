@@ -81,4 +81,4 @@ Apache Struts 2 2.3.31
 
 Возникал ошибка при обработке строки и из-за этого выпала ошибка. А вот и ответ: `2.3.31`)
 
-![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Information_disclosure_in_error_messages/1.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_information_disclosure/IMG_Information_disclosure_in_error_messages/1.png){: height="200" .align-center}
