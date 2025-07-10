@@ -26,7 +26,7 @@ https://0a3f00d5049e908f80d1448300ca0041.web-security-academy.net
 
 Осмотрю сайт. Попробую залогиниться с постоянными кредами в лабах `PortSwigger` — `wiener`:`peter`, хоть их нам и не дали. Успех ~~взломал, получается~~
 
-![IMG](/assets/images/PortSwigger/IMG_Information_disclosure_in_version_control_history/1.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Information_disclosure_in_version_control_history/1.png){: height="200" .align-center}
 
 Ладно, пойду запускать `ffuf`:
 
@@ -68,11 +68,11 @@ analytics               [Status: 200, Size: 0, Words: 1, Lines: 1, Duration: 62m
 
 Сразу интересно) Пойду смотреть файлы `.git`:
 
-![IMG](/assets/images/PortSwigger/IMG_Information_disclosure_in_version_control_history/2.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Information_disclosure_in_version_control_history/2.png){: height="200" .align-center}
 
 Вот такое нашел в логах:
 
-![IMG](/assets/images/PortSwigger/IMG_Information_disclosure_in_version_control_history/3.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Information_disclosure_in_version_control_history/3.png){: height="200" .align-center}
 
 Скачаю директорию `.git` к себе на комп:
 
@@ -88,16 +88,16 @@ git restore .
 
 Я смог восстановить файлы:
 
-![IMG](/assets/images/PortSwigger/IMG_Information_disclosure_in_version_control_history/4.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Information_disclosure_in_version_control_history/4.png){: height="200" .align-center}
 
 Попробу посмотреть логи изменений через `git show`:
 
-![IMG](/assets/images/PortSwigger/IMG_Information_disclosure_in_version_control_history/5.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Information_disclosure_in_version_control_history/5.png){: height="200" .align-center}
 
 Можно увидеть, что пароль `9fpnrxua13e5nx90y6kf` раньше был захардкожен, а теперь берется из `env`. Но я все равно его достал. Бегом в ЛК, пока не спалили)
 
-![IMG](/assets/images/PortSwigger/IMG_Information_disclosure_in_version_control_history/6.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Information_disclosure_in_version_control_history/6.png){: height="200" .align-center}
 
 Удалил пользователя, а значит лаба решена)
 
-![IMG](/assets/images/PortSwigger/IMG_Information_disclosure_in_version_control_history/7.png){: height="200" .align-center}
+![IMG](/assets/images/PortSwigger/IMG_path_traversal/IMG_Information_disclosure_in_version_control_history/7.png){: height="200" .align-center}
