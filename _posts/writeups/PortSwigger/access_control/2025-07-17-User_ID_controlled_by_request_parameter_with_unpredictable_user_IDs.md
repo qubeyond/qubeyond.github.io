@@ -5,7 +5,7 @@ tags: [web, writeup]
 categories: [PortSwigger]
 tagline: ""
 header:
-  overlay_image: /assets/images/ps_logo.webp
+  overlay_image: /assets/images/IMG_writeups/IMG_PortSwigger/ps_logo.webp
   overlay_filter: 0.5 
   overlay_color: "#fff"
   actions:
