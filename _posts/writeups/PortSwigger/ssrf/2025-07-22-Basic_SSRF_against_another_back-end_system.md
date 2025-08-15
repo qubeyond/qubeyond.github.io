@@ -26,7 +26,6 @@ https://0a8c001c03be57138111448800b200f6.web-security-academy.net/
 
 ## Solution
 
-{% raw %}
 ```http
 POST /product/stock HTTP/2
 Host: 0a8c001c03be57138111448800b200f6.web-security-academy.net
@@ -47,7 +46,6 @@ Te: trailers
 
 stockApi=http%3A%2F%2F192.168.0.1%3A8080%2Fproduct%2Fstock%2Fcheck%3FproductId%3D2%26storeId%3D1
 ```
-{% endraw %}
 
 Подставим предполагаемый адрес в параметр `stockApi`:
 
