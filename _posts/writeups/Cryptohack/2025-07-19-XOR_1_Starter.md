@@ -1,5 +1,5 @@
 ---
-title: "CryptoHack Lab. XOR. 1.Starter"
+title: "CryptoHack Lab. XOR-1. Starter"
 date: 2025-07-19
 tags: [crypto, writeup]  
 categories: [Crypto]
