@@ -4,7 +4,6 @@ date: 2025-08-02
 tags: [crypto, writeup]  
 categories: [Crypto]
 tagline: ""
-render_with_liquid: false
 header:
   overlay_image: /assets/images/IMG_writeups/IMG_Cryptohack/cryptohack_logo.webp
   overlay_filter: 0.5 
@@ -27,7 +26,7 @@ header:
 Известен формат строки `crypto{`. Попробуем найти ключ для этой части. Если он будет повторяться, то возможно получится расшифровать всю строку.
 
 Попробую сделать это:
-
+{% raw %}
 ```python
 flag = '0e0b213f26041e480b26217f27342e175d0e070a3c5b103e2526217f27342e175d0e077e263451150104'
 s = b'crypto{'
@@ -40,7 +39,7 @@ flag = bytes.fromhex(flag)
 key = [flag[i] ^ s[i] for i in range(len(s))]
 print(key)
 ```
-
+{% endraw %}
 Для удобства написал `xor` для ключа разной длины. В `key[i % len(key)` мы всегда берем индекс по модулю его длины, так что не выйдем за границу списка.
 
 Воть ключ:
