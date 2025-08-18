@@ -4,6 +4,7 @@ date: 2025-08-02
 tags: [crypto, writeup]  
 categories: [Crypto]
 tagline: ""
+render_with_liquid: false
 header:
   overlay_image: /assets/images/IMG_writeups/IMG_Cryptohack/cryptohack_logo.webp
   overlay_filter: 0.5 
