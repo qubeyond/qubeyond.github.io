@@ -13,7 +13,7 @@ header:
       url: "https://portswigger.net/web-security/learning-paths/authentication-vulnerabilities/vulnerabilities-in-multi-factor-authentication/authentication/multi-factor/lab-2fa-broken-logic"
 classes: wide
 ---
-
+{% raw %}
 В данной лабе нарушена логика двухфакторной аутентификации. Для прохождения нужно получить доступ к аккаунту `carlos`. Даны креды от нашего пользователя `wiener`:`peter`.
 
 ```
@@ -206,3 +206,4 @@ Content-Length: 0
 Обновил страницу. И вот я залогинился)
 
 ![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_authentication/IMG_2FA_broken_logic/5.png){: height="200" .align-center}
+{% endraw %}
