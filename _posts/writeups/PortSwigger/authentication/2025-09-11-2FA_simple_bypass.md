@@ -14,7 +14,7 @@ header:
 classes: wide
 ---
 {% raw %}
-У нас есть наши креды `wiener:peter`, и креды жертывы `carlos:montoya`. Нужно обойти двухфакторную аутентификацию.
+У нас есть креды `wiener:peter`, и креды жертывы `carlos:montoya`. Нужно обойти двухфакторную аутентификацию.
 
 ```
 https://0a84007303189a6280c7302a00a200ac.web-security-academy.net/
