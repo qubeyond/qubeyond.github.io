@@ -1,6 +1,6 @@
 ---
 title: "Cryptohack Lab. Encoding Challenge"
-date: 2025-09-29
+date: 2025-09-25
 tags: [crypto, writeup]  
 categories: [Crypto]
 tagline: ""
