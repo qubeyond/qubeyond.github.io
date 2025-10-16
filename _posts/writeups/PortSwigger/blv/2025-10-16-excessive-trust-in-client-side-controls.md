@@ -28,7 +28,7 @@ https://0a9800e003497ec381dbfcaa00f800b9.web-security-academy.net
 
 Нужно войти в аккаунт. Креды я дам. Нужно купить жилет. Денег я не дам.
 
-![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_blv/IMG_excessive-trust-in-client-side-controls/2.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_blv/IMG_excessive-trust-in-client-side-controls/2.jpeg){: height="200" .align-center}
 
 Печаль(
 
