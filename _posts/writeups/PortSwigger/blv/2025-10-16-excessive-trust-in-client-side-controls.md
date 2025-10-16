@@ -117,7 +117,7 @@ productId=1&redir=PRODUCT&quantity=1&price=1
 
 Меня устраивает такая цена)
 
-![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IIMG_blv/IMG_excessive-trust-in-client-side-controls/5.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_blv/IMG_excessive-trust-in-client-side-controls/5.png){: height="200" .align-center}
 
 Решена)
 
