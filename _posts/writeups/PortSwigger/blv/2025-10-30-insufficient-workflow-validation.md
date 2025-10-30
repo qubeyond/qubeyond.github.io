@@ -14,7 +14,7 @@ header:
 classes: wide
 ---
 
-Для прохождения нужно купить `Lightweight l33t leather jacket`. Для входа в учетную запись есть креды `winere`:`peter`.
+Для прохождения нужно купить `Lightweight l33t leather jacket`. Для входа в учетную запись есть креды `wiener`:`peter`.
 
 ```
 https://0ae700e003e905dd811b3f0e00ff0002.web-security-academy.net/
