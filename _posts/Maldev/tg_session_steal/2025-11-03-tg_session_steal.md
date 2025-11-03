@@ -2,7 +2,7 @@
 title: "Кража сессии телеграм"
 date: 2025-11-03
 tags: []  
-categories: [IMG_Maldev]
+categories: [Maldev]
 tagline: ""
 header:
   overlay_image: /assets/images/IMG_Maldev/IMG_tg_session_steal/tg_session_steal_logo.png
