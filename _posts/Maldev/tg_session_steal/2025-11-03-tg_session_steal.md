@@ -2,10 +2,10 @@
 title: "Кража сессии телеграм"
 date: 2025-11-03
 tags: []  
-categories: [Maldev]
+categories: [IMG_Maldev]
 tagline: ""
 header:
-  overlay_image: /assets/images/Maldev/IMG_tg_session_steal/tg_session_steal_logo.png
+  overlay_image: /assets/images/IMG_Maldev/IMG_tg_session_steal/tg_session_steal_logo.png
   overlay_filter: 0.5 
   overlay_color: "#fff"
 classes: half
@@ -23,7 +23,7 @@ toc_label: "Оглавление"
 
 Хоть стиллеры встречались мне не особо часто, но об этой технике я слышал. Теперь хочу рассказать ее вам. Многие из вас используют `Telegram`. Даже мой блог в тг ([подписывайтесь](https://t.me/coffee_cube), кстати, если вы еще этого не сделали ~~негодяи~~). Эту технику `Telegram` не считает уязвимостью или багом. А все, что не баг — это фича.
 
-![IMG](/assets/images/Maldev/IMG_tg_session_steal/1.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_Maldev/IMG_tg_session_steal/1.png){: height="200" .align-center}
 
 Значит сегодня будем обсуждать крутую фичу телеги. Погнали^3
 
@@ -49,7 +49,7 @@ toc_label: "Оглавление"
 
 Не верите?! Пфф. Подержите мой кофе.
 
-![IMG](/assets/images/Maldev/IMG_tg_session_steal/3.webp){: height="200" .align-center}
+![IMG](/assets/images/IMG_Maldev/IMG_tg_session_steal/3.webp){: height="200" .align-center}
 
 # Рубрика "Эксперимент"
 
@@ -59,15 +59,15 @@ toc_label: "Оглавление"
 
 В качестве атакуемой тачки я буду использовать `Fedora`. В качестве атакующей подойдет `kali`. Мы же тру хацкеры. Иначе и быть не могло. А вот и скрин в шакальном качестве:
 
-![IMG](/assets/images/Maldev/IMG_tg_session_steal/4.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_Maldev/IMG_tg_session_steal/4.png){: height="200" .align-center}
 
 Найду папку `tdata`, в которой должна быть моя сессия:
 
-![IMG](/assets/images/Maldev/IMG_tg_session_steal/5.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_Maldev/IMG_tg_session_steal/5.png){: height="200" .align-center}
 
 Я сжал ее с помощью `7z` и перекинул на вторую виртуалку с `kali`. На ней тоже стоит тг клиент:
 
-![IMG](/assets/images/Maldev/IMG_tg_session_steal/6.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_Maldev/IMG_tg_session_steal/6.png){: height="200" .align-center}
 
 Перекину файлики.
 
@@ -76,22 +76,22 @@ toc_label: "Оглавление"
 
 Файл я перекинул. Для неверующих приложу их хеши на разных тачках:
 
-![IMG](/assets/images/Maldev/IMG_tg_session_steal/7.png){: height="200" .align-center}
-![IMG](/assets/images/Maldev/IMG_tg_session_steal/8.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_Maldev/IMG_tg_session_steal/7.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_Maldev/IMG_tg_session_steal/8.png){: height="200" .align-center}
 
 Подложим сессию в телегу на `kali`:
 
-![IMG](/assets/images/Maldev/IMG_tg_session_steal/9.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_Maldev/IMG_tg_session_steal/9.png){: height="200" .align-center}
 
 > Полезно делать бекапы, если вы подменяете какие-то файлы. А то что вы будете делать, если все пойдет не по плану?)
 
 Момент истины. Открываем тг:
 
-![IMG](/assets/images/Maldev/IMG_tg_session_steal/10.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_Maldev/IMG_tg_session_steal/10.png){: height="200" .align-center}
 
 При этом количество сессий все еще 2:
 
-![IMG](/assets/images/Maldev/IMG_tg_session_steal/11.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_Maldev/IMG_tg_session_steal/11.png){: height="200" .align-center}
 
 Цитирую ~~великих~~ и ужасных:
 
@@ -99,11 +99,11 @@ toc_label: "Оглавление"
 > Sorry, но твой бойчик — больше не твой бойчик
 > — ~~Миа Бойка~~ ~~Влад Бумага~~ Мейби Бейби
 
-![IMG](/assets/images/Maldev/IMG_tg_session_steal/12.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_Maldev/IMG_tg_session_steal/12.png){: height="200" .align-center}
 
 Для безопасности в `Telegram` предусмотрено ограничение возможностей новых сессий. Им запрещено в течение 24 часов завершать ранее открытые сессии. Но так как мы полность угнали действующую сессию, то с большой вероятность это нам не помешает.
 
-![IMG](/assets/images/Maldev/IMG_tg_session_steal/13.jpg){: height="200" .align-center}
+![IMG](/assets/images/IMG_Maldev/IMG_tg_session_steal/13.jpg){: height="200" .align-center}
 
 # А как нам жить дальше?
 
