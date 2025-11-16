@@ -24,13 +24,13 @@ https://0a0d00fd03552cc28082306900f6007f.web-security-academy.net/
 
 Пойду сразу пытаться логиниться, так как вот эта хрень меня смущает)
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_bypassing-rate-limits/1.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_bypassing-rate-limits/1.png){: height="200" .align-center}
 
 Итак, сперва я решил, теперь буду писать... Но конкурс "угнать за 15 минут" мне понравился. Повторять конечно же я не буду, но все же)
 
 Я знаю из условия, что стоит защита от брутфорса)
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_bypassing-rate-limits/2.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_bypassing-rate-limits/2.png){: height="200" .align-center}
 
 Если защита реализована с ошибкой, то с помощью `Race condition` можно ее обойти. То есть мне нужно отправить одновременно запрос на логин с разными паролями. Если пароль верный, то меня должно перенаправить на другую страницу, а значит я получу статус-код `302`.
 
@@ -124,12 +124,12 @@ for word in passwords:
 
 Далее все эти запросы отправляются с помощью `engine.openGate('1')`. В полученных ответах я вижу нужные мне с кодом `302`:
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_bypassing-rate-limits/3.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_bypassing-rate-limits/3.png){: height="200" .align-center}
 
 Использую пароль, чтобы залогиниться:
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_bypassing-rate-limits/4.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_bypassing-rate-limits/4.png){: height="200" .align-center}
 
 В панеле администратора удаляю нужный аккаунт. Лаба пройдена. Угнал получается...
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_bypassing-rate-limits/5.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_bypassing-rate-limits/5.png){: height="200" .align-center}

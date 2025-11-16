@@ -57,24 +57,24 @@ email=new_mail%40exploit-0a24006503c415409f72303601bc00ea.exploit-server.net&csr
 
 Для смены почты необходимо подтвердить ее:
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_single-endpoint/1.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_single-endpoint/1.png){: height="200" .align-center}
 
 Интересно. Попробую отправить несколько запросов параллельно. Один из пакетов будет содержать текущую почту, второй - `carlos@ginandjuice.shop`. Разберу на примере:
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_single-endpoint/2.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_single-endpoint/2.png){: height="200" .align-center}
 
 Первый запрос содержит подконтрольный мной почтовый адрес. Если он сохраняет новый адрес в переменную, а затем отправляет запрос на подтверждение, то есть возможность изменить эту переменную с помощью второго запроса. Отправлю второй запрос параллельно с первым. Если произойдет такая же ситуация, как и на картинке выше, то значение в переменной с новой почтой изменится на `carlos@ginandjuice.shop`, но подтверждение будет отправлено на мой почтовый ящик. Что собственно и произошло:
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_single-endpoint/3.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_single-endpoint/3.png){: height="200" .align-center}
 
 Подтверждаю и проверю ЛК:
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_single-endpoint/4.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_single-endpoint/4.png){: height="200" .align-center}
 
 Зайду в админ панель и удалю пользователя:
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_single-endpoint/5.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_single-endpoint/5.png){: height="200" .align-center}
 
 Лаба решена:3
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_single-endpoint/6.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_single-endpoint/6.png){: height="200" .align-center}

@@ -151,12 +151,12 @@ Content-Length: 19
 
 И это сработало)
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_multi-endpoint/1.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_multi-endpoint/1.png){: height="200" .align-center}
 
 Давайте разберем, что произошло:
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_multi-endpoint/2.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_multi-endpoint/2.png){: height="200" .align-center}
 
 В корзине был один товар - `Gitf Card`. Я одновременно отправил запросы на добавление товара в корзину и подтверждение покупки. Запрос на подтверждение покупки пришел раньше и началась его обработка. На этом этапе в корзине только один товар. Далее пришел запрос на добавление еще одного товара в корзину. Он был обработан быстрее, чем запрос на подтверждение покупки. Таким образом товары в корзине были изменены. Теперь в корзине находятся `Gitf Card` и `Jacket`. Запрос на подтверждение покупки завершился позже и произошла покупка товаров из корзины. Это позволило приобрести товар и увести баланс в минус)
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_multi-endpoint/3.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_multi-endpoint/3.png){: height="200" .align-center}

@@ -24,11 +24,11 @@ https://0a30007f04cd108d814b48510086008f.web-security-academy.net/
 
 Мммм... Скидка
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_limit-overrun/1.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_limit-overrun/1.png){: height="200" .align-center}
 
 Ладно, нужно хотя бы зайти в аккаунт) У меня даже есть 50$. Добавлю нужный товар в корзину. 
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_limit-overrun/2.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_limit-overrun/2.png){: height="200" .align-center}
 
 Вижу поля для ввода купона. Попробую ввести что-то рандомное, чтобы получить сам запрос:
 
@@ -57,16 +57,16 @@ csrf=OIuypoh9kWVUNuxpjxiRErXjIfio43od&coupon=random
 
 Теперь введу нужный купон, но отправлю его множество раз. Для этого создам группу запросов в `Repeater`, выберу параллельную отправку и накопирую запросов:
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_limit-overrun/3.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_limit-overrun/3.png){: height="200" .align-center}
 
 Через нескольно попыток у меня получилось добиться выгодной цены)))
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_limit-overrun/4.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_limit-overrun/4.png){: height="200" .align-center}
 
 Покупаю)
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_limit-overrun/5.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_limit-overrun/5.png){: height="200" .align-center}
 
 ~~Безумные скидки~~ Лаба решена
 
-![IMG](/assets/images/PortSwigger/IMG_rc/IMG_limit-overrun/6.png){: height="200" .align-center}
+![IMG](/assets/images/IMG_writeups/IMG_PortSwigger/IMG_rc/IMG_limit-overrun/6.png){: height="200" .align-center}
