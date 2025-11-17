@@ -66,7 +66,7 @@ toc_label: "Оглавление"
 
 "Кем нужно быть, чтобы оставить свой ник на месте взлома?" - спросите вы. Хороший вопрос. ~~Конченным~~ придурком. И мне повезло, что он именно такой)
 
-![IMG](/assets/images/IMG_Articles/IMG_minecraft-incident/7.jpg){: height="200" .align-center}
+![IMG](/assets/images/IMG_Articles/IMG_minecraft-incident/7.jpeg){: height="200" .align-center}
 
 Вот пруфы:
 
