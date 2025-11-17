@@ -5,7 +5,7 @@ tags: [linux, incident]
 categories: [Articles]
 tagline: ""
 header:
-  overlay_image: /assets/images/IMG_Articles/IMG_minecraft-incident/minecraft-incident_logo.png
+  overlay_image: /assets/images/IMG_Articles/IMG_minecraft-incident/minecraft-incident_logo.jpg
   overlay_filter: 0.5 
   overlay_color: "#fff"
 classes: half
